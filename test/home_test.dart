@@ -1,3 +1,4 @@
+import 'package:estilizacao_componentes/components/box_card.dart';
 import 'package:estilizacao_componentes/data/bank_inherited.dart';
 import 'package:estilizacao_componentes/screens/home.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,21 @@ void main() {
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
   });
 
-  testWidgets('finds a AccountStatus', (tester) async {
+  testWidgets('Finds a AccountStatus', (tester) async {
     await tester.pumpWidget(MaterialApp(home: BankInherited(child: Home())));
 
     expect(find.byKey(Key('testKey')), findsOneWidget);
+  });
+
+  testWidgets('Finds 5 BoxCard', (tester) async {
+    await tester.pumpWidget(MaterialApp(home: BankInherited(child: Home())));
+
+    expect(find.byWidgetPredicate((widget) {
+      if (widget is BoxCard) {
+        return true;
+      } else {
+        return false;
+      }
+    }), findsNWidgets(5));
   });
 }
